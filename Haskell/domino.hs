@@ -5,8 +5,10 @@ import Data.Char
 type Pip = Int
 type Bone = (Pip, Pip, Int)
 data Loc = Value Pos Int | Stone Pos Bone Int deriving Show
-type Pos = Int --(Int, Int)
+type Pos = Int
 type Board = [Loc]
+
+data Tree a = Node a [Tree a] deriving Show
 
 -- constants to test with
 board :: Board
@@ -33,64 +35,29 @@ width = 8
 height :: Int
 -- height = 4
 height = 7
+--------------------
 
-isFree :: Loc -> Bool
-isFree (Stone _ _ _) = False
-isFree (Value _ _)   = True
+--main method
+-- it calculates the possible solutions for the given board and stones, and prints it
+main :: Board -> [Bone] -> IO()
+main b bns = showAllBoards boards
+              where
+                tree = gametree b bns
+                boards = minimaxish tree
 
-layStone :: Board -> Bone -> Int -> Board
-layStone b bn n = xs ++ [Stone pos bn val] ++ ys
-                   where
-                     (xs, (Value pos val):ys) = splitAt n b
+-- creates a tree of possible steps
+-- the first bone in the array is tried to be placed on the board, next the second etc..
+gametree :: Board -> [Bone] -> Tree Board
+gametree b []       = Node b [] -- mag weg zodra 'full' werkt
+gametree b (bn:bns) = Node b [gametree b' bns | b' <- moves b bn]
 
-move :: Board -> Bone -> Int -> Int -> Board
-move b bn nx ny = layStone b' bn ny
-                   where
-                     b' = layStone b bn nx
+-- retrieves all possible solutions from the tree
+minimaxish :: Tree Board -> [Board]
+minimaxish (Node b []) | full b    = [b]
+                       | otherwise = []
+minimaxish (Node b ts) = [b' | ts' <- ts, b' <- minimaxish ts']
 
-full :: Board -> Bool
-full [] = True
-full b  = not (isFree (b !! 0)) && full (drop 1 b)
-
-noOptions :: Board -> Bool
-noOptions b = (length (getPairs b)) == 0
-
-getPairs :: Board -> [(Loc,Loc)]
-getPairs b = concat [neighbs b l | l <- b, isFree l]
-
-neighbs :: Board -> Loc -> [(Loc,Loc)]
-neighbs b (Value n _) = freeRight b n ++ freeBelow b n
-
-
-freeBelow :: Board -> Int -> [(Loc,Loc)]
-freeBelow b n = if (isValid below && isFree (b !! below))
-                then [((b !! n), (b !! below))]
-                else []
-                 where
-                   below = n + width
-
-freeRight :: Board -> Int -> [(Loc,Loc)]
-freeRight b n = if (isValid right) && (right `mod` width /= 0 && isFree (b !! right))
-                then [((b !! n), (b !! right))]
-                else []
-                 where
-                   right = n + 1
-
-isValid :: Int -> Bool
-isValid n = n < (width * height) && n >= 0
-
--- creates all the possible boards with the given Bone
-moves :: Board -> Bone -> [Board]
-moves b bn | noOptions b = []
-           | full b      = []
-           | otherwise   = [move b bn n1 n2 | (Value n1 val1, Value n2 val2) <- prs, valid bn (val1,val2)]
-                            where
-                             prs = getPairs b
-
--- TODO: check if bone is not already placed -> isn't needed since you go along the list with al bones
-valid :: Bone -> (Int, Int) -> Bool
-valid (p1,p2,_) (n1,n2) = (p1 == n1 && p2 == n2) || (p1 == n2 && p2 == n1)
-
+-- print the solutions
 showAllBoards :: [Board] -> IO ()
 showAllBoards [] = putStr []
 showAllBoards (b:bs) = do showBoard b
@@ -112,20 +79,70 @@ showLocation (Stone _ (_,_,nr) val) | length value == 4 = value ++ "  "
                                     | otherwise         = value
                                        where
                                          value = show val ++ "(" ++ show nr ++ ")"
+--------------------
+-- creates all the possible boards with the given Bone
+moves :: Board -> Bone -> [Board]
+moves b bn | noOptions b = []
+           | full b      = []
+           | otherwise   = [move b bn n1 n2 | (Value n1 val1, Value n2 val2) <- prs, valid bn (val1,val2)]
+                            where
+                             prs = getPairs b
 
-data Tree a = Node a [Tree a] deriving Show
+-- lays the bone on the two given positions on the board
+move :: Board -> Bone -> Int -> Int -> Board
+move b bn nx ny = layStone b' bn ny
+                  where
+                    b' = layStone b bn nx
 
-gametree :: Board -> [Bone] -> Tree Board
-gametree b []       = Node b [] -- mag weg zodra 'full' werkt
-gametree b (bn:bns) = Node b [gametree b' bns | b' <- moves b bn]
+-- lay the stone on the position on the board
+layStone :: Board -> Bone -> Int -> Board
+layStone b bn n = xs ++ [Stone pos bn val] ++ ys
+                   where
+                     (xs, (Value pos val):ys) = splitAt n b
 
-minimaxish :: Tree Board -> [Board]
-minimaxish (Node b []) | full b    = [b]
-                       | otherwise = []
-minimaxish (Node b ts) = [b' | ts' <- ts, b' <- minimaxish ts']
+-- get all the free neighbours of a given location on the board
+neighbs :: Board -> Loc -> [(Loc,Loc)]
+neighbs b (Value n _) = freeRight b n ++ freeBelow b n
 
-main :: Board -> [Bone] -> IO()
-main b bns = showAllBoards boards
-              where
-                tree = gametree b bns
-                boards = minimaxish tree
+
+freeBelow :: Board -> Int -> [(Loc,Loc)]
+freeBelow b n = if (isValid below && isFree (b !! below))
+               then [((b !! n), (b !! below))]
+               else []
+                where
+                  below = n + width
+
+freeRight :: Board -> Int -> [(Loc,Loc)]
+freeRight b n = if (isValid right) && (right `mod` width /= 0 && isFree (b !! right))
+               then [((b !! n), (b !! right))]
+               else []
+                where
+                  right = n + 1
+--------------------
+
+-- checks whether it is possible to lay a stone on this Loc
+isFree :: Loc -> Bool
+isFree (Stone _ _ _) = False
+isFree (Value _ _)   = True
+
+-- checks if the board is full
+full :: Board -> Bool
+full [] = True
+full b  = not (isFree (b !! 0)) && full (drop 1 b)
+
+-- checks if there are no options left to lay a stone
+noOptions :: Board -> Bool
+noOptions b = (length (getPairs b)) == 0
+
+-- gives all possibles pairs of free stones on the board
+getPairs :: Board -> [(Loc,Loc)]
+getPairs b = concat [neighbs b l | l <- b, isFree l]
+
+-- checs whether the stone is located on the board
+isValid :: Int -> Bool
+isValid n = n < (width * height) && n >= 0
+
+-- TODO: check if bone is not already placed -> isn't needed since you go along the list with al bones
+-- checks if the values on the bone are the same as the values on the field
+valid :: Bone -> (Int, Int) -> Bool
+valid (p1,p2,_) (n1,n2) = (p1 == n1 && p2 == n2) || (p1 == n2 && p2 == n1)
