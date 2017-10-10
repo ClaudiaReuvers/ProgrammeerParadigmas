@@ -18,11 +18,10 @@
           <file leaf-file-name="Board2.java" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/com/nedap/university/domino/Board2.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="480">
-                  <caret line="79" column="21" lean-forward="false" selection-start-line="79" selection-start-column="21" selection-end-line="79" selection-end-column="21" />
+                <state relative-caret-position="255">
+                  <caret line="17" column="91" lean-forward="false" selection-start-line="17" selection-start-column="91" selection-end-line="17" selection-end-column="91" />
                   <folding>
                     <element signature="imports" expanded="true" />
-                    <element signature="method#Board2#0;class#Board2#0" expanded="false" />
                     <element signature="method#getAllPairs#0;class#Board2#0" expanded="false" />
                     <element signature="method#getPairsOfField#0;class#Board2#0" expanded="false" />
                     <element signature="method#getBelowNeighbour#0;class#Board2#0" expanded="false" />
@@ -56,8 +55,24 @@
           <file leaf-file-name="Game.java" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/com/nedap/university/domino/Game.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="315">
-                  <caret line="21" column="48" lean-forward="false" selection-start-line="21" selection-start-column="48" selection-end-line="21" selection-end-column="48" />
+                <state relative-caret-position="660">
+                  <caret line="44" column="0" lean-forward="true" selection-start-line="44" selection-start-column="0" selection-end-line="44" selection-end-column="0" />
+                  <folding>
+                    <element signature="imports" expanded="true" />
+                    <element signature="e#401#402#0" expanded="true" />
+                    <element signature="e#420#421#0" expanded="true" />
+                    <element signature="e#453#454#0" expanded="true" />
+                    <element signature="e#472#473#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="Board2Test.java" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/com/nedap/university/domino/Board2Test.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="420">
+                  <caret line="28" column="20" lean-forward="false" selection-start-line="28" selection-start-column="8" selection-end-line="28" selection-end-column="20" />
                   <folding>
                     <element signature="imports" expanded="true" />
                   </folding>
@@ -69,11 +84,23 @@
       </split-first>
       <split-second>
         <leaf>
-          <file leaf-file-name="Board2Test.java" pinned="false" current-in-tab="true">
+          <file leaf-file-name="Board2Test.java" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/com/nedap/university/domino/Board2Test.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="30">
-                  <caret line="2" column="5" lean-forward="false" selection-start-line="2" selection-start-column="5" selection-end-line="2" selection-end-column="5" />
+                <state relative-caret-position="420">
+                  <caret line="28" column="20" lean-forward="false" selection-start-line="28" selection-start-column="8" selection-end-line="28" selection-end-column="20" />
+                  <folding>
+                    <element signature="imports" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="GameTest.java" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/src/com/nedap/university/domino/GameTest.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="510">
+                  <caret line="34" column="45" lean-forward="false" selection-start-line="34" selection-start-column="45" selection-end-line="34" selection-end-column="45" />
                   <folding>
                     <element signature="imports" expanded="true" />
                   </folding>
@@ -116,14 +143,15 @@
         <option value="$PROJECT_DIR$/src/main/java/com/nedap/university/domino/Bone.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/nedap/university/domino/Board.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/nedap/university/domino/Field.java" />
-        <option value="$PROJECT_DIR$/src/com/nedap/university/domino/Game.java" />
         <option value="$PROJECT_DIR$/src/com/nedap/university/domino/BoardTest.java" />
         <option value="$PROJECT_DIR$/src/com/nedap/university/domino/Pair.java" />
         <option value="$PROJECT_DIR$/src/com/nedap/university/domino/Bone.java" />
-        <option value="$PROJECT_DIR$/src/com/nedap/university/domino/Board2.java" />
         <option value="$PROJECT_DIR$/src/com/nedap/university/domino/Board2Test.java" />
         <option value="$PROJECT_DIR$/src/com/nedap/university/domino/Field.java" />
         <option value="$PROJECT_DIR$/src/com/nedap/university/domino/Board.java" />
+        <option value="$PROJECT_DIR$/src/com/nedap/university/domino/Board2.java" />
+        <option value="$PROJECT_DIR$/src/com/nedap/university/domino/GameTest.java" />
+        <option value="$PROJECT_DIR$/src/com/nedap/university/domino/Game.java" />
       </list>
     </option>
   </component>
@@ -267,20 +295,6 @@
               <option name="myItemId" value="src" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Domino" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="domino" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
@@ -316,59 +330,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.Board2Test">
-    <configuration default="false" name="BoardTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
-        <pattern>
-          <option name="PATTERN" value="test.java.com.nedap.university.domino.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <module name="Domino" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PACKAGE_NAME" value="test.java.com.nedap.university.domino" />
-      <option name="MAIN_CLASS_NAME" value="test.java.com.nedap.university.domino.BoardTest" />
-      <option name="METHOD_NAME" />
-      <option name="TEST_OBJECT" value="class" />
-      <option name="VM_PARAMETERS" value="-ea" />
-      <option name="PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="singleModule" />
-      </option>
-      <envs />
-      <patterns />
-      <method />
-    </configuration>
-    <configuration default="false" name="BoardTest (1)" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
-        <pattern>
-          <option name="PATTERN" value="com.nedap.university.domino.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <module name="Domino" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PACKAGE_NAME" value="com.nedap.university.domino" />
-      <option name="MAIN_CLASS_NAME" value="com.nedap.university.domino.BoardTest" />
-      <option name="METHOD_NAME" />
-      <option name="TEST_OBJECT" value="class" />
-      <option name="VM_PARAMETERS" value="-ea" />
-      <option name="PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="singleModule" />
-      </option>
-      <envs />
-      <patterns />
-      <method />
-    </configuration>
+  <component name="RunManager" selected="JUnit.GameTest.testSetup">
     <configuration default="false" name="Field" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
@@ -429,6 +391,58 @@
       <option name="MAIN_CLASS_NAME" value="com.nedap.university.domino.Board2Test" />
       <option name="METHOD_NAME" value="testGetPairsOfField" />
       <option name="TEST_OBJECT" value="method" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <envs />
+      <patterns />
+      <method />
+    </configuration>
+    <configuration default="false" name="GameTest.testSetup" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="com.nedap.university.domino.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <module name="Domino" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" value="com.nedap.university.domino" />
+      <option name="MAIN_CLASS_NAME" value="com.nedap.university.domino.GameTest" />
+      <option name="METHOD_NAME" value="testSetup" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <envs />
+      <patterns />
+      <method />
+    </configuration>
+    <configuration default="false" name="GameTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="com.nedap.university.domino.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <module name="Domino" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" value="com.nedap.university.domino" />
+      <option name="MAIN_CLASS_NAME" value="com.nedap.university.domino.GameTest" />
+      <option name="METHOD_NAME" />
+      <option name="TEST_OBJECT" value="class" />
       <option name="VM_PARAMETERS" value="-ea" />
       <option name="PARAMETERS" />
       <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
@@ -837,19 +851,19 @@
       <method />
     </configuration>
     <list size="5">
-      <item index="0" class="java.lang.String" itemvalue="JUnit.BoardTest" />
-      <item index="1" class="java.lang.String" itemvalue="JUnit.BoardTest (1)" />
-      <item index="2" class="java.lang.String" itemvalue="Application.Field" />
-      <item index="3" class="java.lang.String" itemvalue="JUnit.Board2Test" />
-      <item index="4" class="java.lang.String" itemvalue="JUnit.Board2Test.testGetPairsOfField" />
+      <item index="0" class="java.lang.String" itemvalue="Application.Field" />
+      <item index="1" class="java.lang.String" itemvalue="JUnit.Board2Test" />
+      <item index="2" class="java.lang.String" itemvalue="JUnit.Board2Test.testGetPairsOfField" />
+      <item index="3" class="java.lang.String" itemvalue="JUnit.GameTest.testSetup" />
+      <item index="4" class="java.lang.String" itemvalue="JUnit.GameTest" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="JUnit.Board2Test" />
-        <item index="1" class="java.lang.String" itemvalue="JUnit.Board2Test.testGetPairsOfField" />
-        <item index="2" class="java.lang.String" itemvalue="Application.Field" />
-        <item index="3" class="java.lang.String" itemvalue="JUnit.BoardTest (1)" />
-        <item index="4" class="java.lang.String" itemvalue="JUnit.BoardTest" />
+        <item index="0" class="java.lang.String" itemvalue="JUnit.GameTest.testSetup" />
+        <item index="1" class="java.lang.String" itemvalue="JUnit.GameTest" />
+        <item index="2" class="java.lang.String" itemvalue="JUnit.Board2Test" />
+        <item index="3" class="java.lang.String" itemvalue="JUnit.Board2Test.testGetPairsOfField" />
+        <item index="4" class="java.lang.String" itemvalue="Application.Field" />
       </list>
     </recent_temporary>
   </component>
@@ -864,48 +878,47 @@
       <option name="presentableId" value="Default" />
       <updated>1507550215719</updated>
       <workItem from="1507550223159" duration="4978000" />
-      <workItem from="1507617141959" duration="9197000" />
+      <workItem from="1507617141959" duration="10670000" />
     </task>
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="Board2Test - 2017.10.10 at 11h 20m 32s.xml">
-      <configuration name="Board2Test" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="Board2Test - 2017.10.10 at 11h 21m 12s.xml">
-      <configuration name="Board2Test" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="Board2Test - 2017.10.10 at 11h 38m 27s.xml">
-      <configuration name="Board2Test" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="Board2Test - 2017.10.10 at 11h 42m 08s.xml">
-      <configuration name="Board2Test" configurationId="JUnit" />
-    </history-entry>
     <history-entry file="Board2Test - 2017.10.10 at 11h 42m 29s.xml">
       <configuration name="Board2Test" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="Board2Test_testGetPairsOfField - 2017.10.10 at 11h 23m 49s.xml">
-      <configuration name="Board2Test.testGetPairsOfField" configurationId="JUnit" />
+    <history-entry file="GameTest - 2017.10.10 at 12h 06m 18s.xml">
+      <configuration name="GameTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="Board2Test_testGetPairsOfField - 2017.10.10 at 11h 30m 09s.xml">
-      <configuration name="Board2Test.testGetPairsOfField" configurationId="JUnit" />
+    <history-entry file="GameTest - 2017.10.10 at 12h 07m 04s.xml">
+      <configuration name="GameTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="Board2Test_testGetPairsOfField - 2017.10.10 at 11h 30m 15s.xml">
-      <configuration name="Board2Test.testGetPairsOfField" configurationId="JUnit" />
+    <history-entry file="GameTest_testSetup - 2017.10.10 at 12h 04m 45s.xml">
+      <configuration name="GameTest.testSetup" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="Board2Test_testGetPairsOfField - 2017.10.10 at 11h 31m 08s.xml">
-      <configuration name="Board2Test.testGetPairsOfField" configurationId="JUnit" />
+    <history-entry file="GameTest_testSetup - 2017.10.10 at 12h 05m 37s.xml">
+      <configuration name="GameTest.testSetup" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="Board2Test_testGetPairsOfField - 2017.10.10 at 11h 31m 18s.xml">
-      <configuration name="Board2Test.testGetPairsOfField" configurationId="JUnit" />
+    <history-entry file="GameTest_testSetup - 2017.10.10 at 12h 05m 45s.xml">
+      <configuration name="GameTest.testSetup" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="GameTest_testSetup - 2017.10.10 at 12h 07m 30s.xml">
+      <configuration name="GameTest.testSetup" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="GameTest_testSetup - 2017.10.10 at 12h 07m 50s.xml">
+      <configuration name="GameTest.testSetup" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="GameTest_testSetup - 2017.10.10 at 12h 07m 53s.xml">
+      <configuration name="GameTest.testSetup" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="GameTest_testSetup - 2017.10.10 at 12h 07m 57s.xml">
+      <configuration name="GameTest.testSetup" configurationId="JUnit" />
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="14175000" />
+    <option name="totallyTimeSpent" value="15648000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="2560" height="1372" extended-state="0" />
-    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -916,19 +929,19 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32847276" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32847276" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3998465" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3998465" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -946,7 +959,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="12" />
+      <option name="time" value="16" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -971,6 +984,10 @@
           <caret line="16" column="5" lean-forward="true" selection-start-line="16" selection-start-column="5" selection-end-line="16" selection-end-column="5" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#401#402#0" expanded="true" />
+            <element signature="e#420#421#0" expanded="true" />
+            <element signature="e#453#454#0" expanded="true" />
+            <element signature="e#472#473#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1221,16 +1238,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/nedap/university/domino/Game.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="21" column="48" lean-forward="false" selection-start-line="21" selection-start-column="48" selection-end-line="21" selection-end-column="48" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/nedap/university/domino/Pair.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="195">
@@ -1246,25 +1253,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/nedap/university/domino/Board2.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="480">
-          <caret line="79" column="21" lean-forward="false" selection-start-line="79" selection-start-column="21" selection-end-line="79" selection-end-column="21" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#Board2#0;class#Board2#0" expanded="false" />
-            <element signature="method#getAllPairs#0;class#Board2#0" expanded="false" />
-            <element signature="method#getPairsOfField#0;class#Board2#0" expanded="false" />
-            <element signature="method#getBelowNeighbour#0;class#Board2#0" expanded="false" />
-            <element signature="method#getRightNeighbour#0;class#Board2#0" expanded="false" />
-            <element signature="method#isFull#0;class#Board2#0" expanded="false" />
-            <element signature="method#getField#0;class#Board2#0" expanded="false" />
-            <element signature="method#move#0;class#Board2#0" expanded="false" />
-            <element signature="method#isValidMove#0;class#Board2#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/nedap/university/domino/Board.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-324">
@@ -1275,12 +1263,54 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/nedap/university/domino/Board2Test.java">
+    <entry file="file://$PROJECT_DIR$/src/com/nedap/university/domino/GameTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="5" lean-forward="false" selection-start-line="2" selection-start-column="5" selection-end-line="2" selection-end-column="5" />
+        <state relative-caret-position="510">
+          <caret line="34" column="45" lean-forward="false" selection-start-line="34" selection-start-column="45" selection-end-line="34" selection-end-column="45" />
           <folding>
             <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/nedap/university/domino/Game.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="660">
+          <caret line="44" column="0" lean-forward="true" selection-start-line="44" selection-start-column="0" selection-end-line="44" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#401#402#0" expanded="true" />
+            <element signature="e#420#421#0" expanded="true" />
+            <element signature="e#453#454#0" expanded="true" />
+            <element signature="e#472#473#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/nedap/university/domino/Board2Test.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="420">
+          <caret line="28" column="20" lean-forward="false" selection-start-line="28" selection-start-column="8" selection-end-line="28" selection-end-column="20" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/nedap/university/domino/Board2.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="17" column="91" lean-forward="false" selection-start-line="17" selection-start-column="91" selection-end-line="17" selection-end-column="91" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#getAllPairs#0;class#Board2#0" expanded="false" />
+            <element signature="method#getPairsOfField#0;class#Board2#0" expanded="false" />
+            <element signature="method#getBelowNeighbour#0;class#Board2#0" expanded="false" />
+            <element signature="method#getRightNeighbour#0;class#Board2#0" expanded="false" />
+            <element signature="method#isFull#0;class#Board2#0" expanded="false" />
+            <element signature="method#getField#0;class#Board2#0" expanded="false" />
+            <element signature="method#move#0;class#Board2#0" expanded="false" />
+            <element signature="method#isValidMove#0;class#Board2#0" expanded="false" />
           </folding>
         </state>
       </provider>

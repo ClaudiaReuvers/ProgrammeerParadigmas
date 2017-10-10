@@ -15,7 +15,7 @@ public class Board2 {
 	public Board2(int height, int width, List<Integer> values) {
 		this.height = height;
 		this.width = width;
-		this.fields = new ArrayList<>();
+		this.fields = new ArrayList<>(); //TODO: look if ArrayList is the fastest way to go
 		for (int i = 0; i < this.height * this.width; i++) {
 			fields.add(new Field(i, values.get(i)));
 		}
