@@ -2,6 +2,7 @@ package com.nedap.university.domino;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
@@ -11,7 +12,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 /**
- * Created by claudia.reuvers on 09/10/2017.
+ * Created by claudia.reuvers on 10/10/2017.
  */
 public class BoardTest {
 
@@ -24,70 +25,60 @@ public class BoardTest {
 	}
 
 	@Test
-	public void testisFull() {
+	public void testSetup() {
+		assertEquals(4, board.getHeight());
+		assertEquals(3, board.getWidth());
+		assertEquals(12, board.getFields().size());
 		assertFalse(board.isFull());
-		// TODO: place stones untill board is full
+		assertEquals(17, board.getAllPairs().size());
+		assertFalse(board.noOptions());
 	}
 
 	@Test
-	public void testGetTwoNeighbours() {
-		Field first = board.getField(0);
-		List<Field> f = board.getTwoNeighbours(first);
-		assertEquals(2, f.size());
-		assertTrue(f.get(0).isEmpty());
-		assertEquals(1, f.get(0).getPosition());
-		assertTrue(f.get(1).isEmpty());
-		assertEquals(3, f.get(1).getPosition());
+	public void testGetPairsOfField() {
+		List<Pair> twoPairs = board.getPairsOfField(board.getField(0));
+		assertEquals(2, twoPairs.size());
+		assertTrue(twoPairs.get(0).contains(board.getField(1)));
+		assertTrue(twoPairs.get(1).contains(board.getField(board.getWidth())));
 
-		Field right = board.getField(2);
-		List<Field> f2 = board.getTwoNeighbours(right);
-		assertEquals(1, f2.size());
-		assertTrue(f.get(0).isEmpty());
-		assertEquals(5, f2.get(0).getPosition());
+		List<Pair> onePair = board.getPairsOfField(board.getField(2));
+		assertEquals(1, onePair.size());
+		assertTrue(onePair.get(0).contains(board.getField(2 + board.getWidth())));
 
-		Field below = board.getField(9);
-		List<Field> f3 = board.getTwoNeighbours(below);
-		assertEquals(1, f3.size());
-		assertTrue(f.get(0).isEmpty());
-		assertEquals(10, f3.get(0).getPosition());
-
-		Field rightbelow = board.getField(11);
-		List<Field> f4 = board.getTwoNeighbours(rightbelow);
-		assertTrue(f4.isEmpty());
+		List<Pair> noPairs = board.getPairsOfField(board.getField(11));
+		assertTrue(noPairs.isEmpty());
 	}
 
 	@Test
-	public void testGetAllNeighbous() {
-		Field first = board.getField(0);
-		List<Field> f = board.getAllNeighbours(first);
-		assertEquals(2, f.size());
-		//TODO: assert that has 1 and 3
-
-		Field second = board.getField(1);
-		List<Field> f2 = board.getAllNeighbours(second);
-		assertEquals(3, f2.size());
-		//TODO
-
-		Field third = board.getField(2);
-		List<Field> f3 = board.getAllNeighbours(third);
-		assertEquals(2, f3.size());
-		//TODO
-
-		Field fourth = board.getField(3);
-		List<Field> f4 = board.getAllNeighbours(fourth);
-		assertEquals(3, f4.size());
-		//TODO
-
-		Field fifth = board.getField(4);
-		List<Field> f5 = board.getAllNeighbours(fifth);
-		assertEquals(4, f5.size());
-		//TODO
+	public void getField() {
+		assertEquals(0, board.getField(0).getPosition());
+		assertEquals(11, board.getField(11).getPosition());
+		assertNull(board.getField(-1));
+		assertNull(board.getField(12));
 	}
 
 	@Test
-	public void testHasPairs() {
-		assertTrue(board.hasPairs());
-		//TODO: add tests when bones are placed
+	public void testMove() {
+		Bone bone = new Bone(0, 0, 1);
+		board.move(0, 1, bone);
+		assertFalse(board.getField(0).isEmpty());
+		assertEquals(bone, board.getField(0).getBone());
+		assertFalse(board.getField(1).isEmpty());
+		assertEquals(bone, board.getField(1).getBone());
 	}
 
+	@Test
+	public void testIsValidMove() {
+		Bone bone1 = new Bone (0,0,1);
+		Bone bone2 = new Bone (0, 1, 2);
+		assertFalse(board.isValidMove(0, 1, bone1));
+		assertTrue(board.isValidMove(0 , 1, bone2));
+		assertFalse(board.isValidMove(-1, 0 , bone1));
+		board.move(0, 1, bone2);
+		assertFalse(board.isValidMove(1, 2, bone1));
+	}
+
+	//TODO: test getAllPairs if stones are laid
+	//TODO: test isFull if the board is full
+	//TODO: test noOptions if there are no options
 }

@@ -1,11 +1,10 @@
 package com.nedap.university.domino;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 
 /**
- * Created by claudia.reuvers on 09/10/2017.
+ * Created by claudia.reuvers on 10/10/2017.
  */
 public class Board {
 
@@ -16,93 +15,69 @@ public class Board {
 	public Board(int height, int width, List<Integer> values) {
 		this.height = height;
 		this.width = width;
-		this.fields = new ArrayList<>();
+		this.fields = new ArrayList<>(); //TODO: look if ArrayList is the fastest way to go
 		for (int i = 0; i < this.height * this.width; i++) {
 			fields.add(new Field(i, values.get(i)));
 		}
 	}
 
-	public boolean isFull() {
-		for (Field field : this.fields) {
-			if (field.isEmpty()) {
-				return false;
-			}
-		}
-		return true;
+	private Board(int height, int width) {
+		this.height = height;
+		this.width = width;
 	}
 
-	public boolean hasPairs() {
-		for (Field field : this.fields) {
-			if (!getPairs(field).isEmpty()) {
-				return true;
-			}
-		}
-		return false;
+	private void setFields(List<Field> fields) {
+		this.fields = fields;
 	}
 
-	public List<Pair> getPairs(Field field) {
-		List<Field> nghbrs = getTwoNeighbours(field);
+	public List<Field> getFields() {
+		return fields;
+	}
+
+	int getHeight() {
+		return height;
+	}
+
+	int getWidth() {
+		return width;
+	}
+
+	List<Pair> getAllPairs() {
 		List<Pair> pairs = new ArrayList<>();
-		for (Field nghbr : nghbrs) {
-			pairs.add(new Pair(field, nghbr));
+		for (Field field : fields) {
+			for (Pair nghbrs : getPairsOfField(field)) {
+				pairs.add(nghbrs);
+			}
 		}
 		return pairs;
 	}
 
-	List<Field> getAllNeighbours(Field field) {
-		List<Field> nghbrs = getTwoNeighbours(field);
-		Field left = getNeighbourLeft(field);
-		if (left != null) {
-			nghbrs.add(left);
+	List<Pair> getPairsOfField(Field field) {
+		List<Pair> pairs = new ArrayList<>();
+		Field nghbrRight = getRightNeighbour(field);
+		if (nghbrRight != null) {
+			pairs.add(new Pair(field, nghbrRight));
 		}
-		Field above = getNeighbourAbove(field);
-		if (above != null) {
-			nghbrs.add(above);
+		Field nghbrBelow = getBelowNeighbour(field);
+		if (nghbrBelow != null) {
+			pairs.add(new Pair(field, nghbrBelow));
 		}
-		return nghbrs;
+		return pairs;
 	}
 
-	public List<Field> getTwoNeighbours(Field field) {
-		List<Field> f = new ArrayList<>();
-		Field right = getNeighbourRight(field);
-		if (right != null) {
-			f.add(right);
-		}
-		Field below = getNeigbourBelow(field);
-		if (below != null) {
-			f.add(below);
-		}
-		return f;
-	}
-
-	private Field getNeighbourRight(Field field) {
-		int posRight = field.getPosition() + 1;
-		if (isOnBoard(posRight) && Math.floorMod(posRight, this.width) != 0 && isEmpty(getField(posRight))) {
-			return getField(posRight);
-		}
-		return null;
-	}
-
-	private Field getNeigbourBelow(Field field) {
+	private Field getBelowNeighbour(Field field) {
 		int posBelow = field.getPosition() + this.width;
-		if (isOnBoard(posBelow) && isEmpty(getField(posBelow))) {
+		if (isOnBoard(posBelow) && getField(posBelow).isEmpty()) {
 			return getField(posBelow);
 		}
 		return null;
 	}
 
-	private Field getNeighbourAbove(Field field) {
-		int posAbove = field.getPosition() - this.width;
-		if (isOnBoard(posAbove) && isEmpty(getField(posAbove))) {
-			return getField(posAbove);
-		}
-		return null;
-	}
-
-	private Field getNeighbourLeft(Field field) {
-		int posLeft = field.getPosition() - 1;
-		if (isOnBoard(posLeft) && Math.floorMod(posLeft, this.width) != (this.width - 1) && isEmpty(getField(posLeft))) {
-			return getField(posLeft);
+	private Field getRightNeighbour(Field field) {
+		int posRight = field.getPosition() + 1;
+		if (isOnBoard(posRight) && Math.floorMod(posRight, this.width) != 0 && getField(posRight)
+				.isEmpty()) {
+			return getField(posRight);
 		}
 		return null;
 	}
@@ -111,17 +86,63 @@ public class Board {
 		return pos >= 0 && pos < (this.height * this.width);
 	}
 
-	public Field getField(int position) {
-		return this.fields.get(position);
+	boolean isFull() {
+		for (Field field : fields) {
+			if (field.isEmpty()) {
+				return false;
+			}
+		}
+		return true;
 	}
 
-	public boolean isEmpty(Field field) {
-		return field.isEmpty();
+	Field getField(int position) {
+		if (isOnBoard(position)) {
+			return this.fields.get(position);
+		}
+		return null;
 	}
 
-//	public Board move(int pos1, int pos2, Bone bone) {
-//		Field field1 = getField(pos1);
-//		LinkedList<Field> fields2 = new LinkedList<>();
-//		fields2.
-//	}
+	boolean noOptions() {
+		return getAllPairs().isEmpty();
+	}
+
+	void move(int pos1, int pos2, Bone bone) {
+		putBone(pos1, bone);
+		putBone(pos2, bone);
+	}
+
+	private void putBone(int pos, Bone bone) {
+		getField(pos).setBone(bone);
+	}
+
+	boolean isValidMove(int pos1, int pos2, Bone bone) {
+		Field firstField = getField(pos1);
+		Field secondField = getField(pos2);
+		if (firstField != null && secondField != null) {
+			return firstField.isEmpty()
+					&& secondField.isEmpty()
+					&& bone.containsValue(firstField.getValue())
+					&& bone.containsValue(secondField.getValue());
+
+		}
+		return false;
+	}
+
+	Board deepcopy() {
+		Board copy = new Board(this.height, this.width);
+		copy.setFields(this.fields);
+		return copy;
+	}
+
+	@Override
+	public String toString() {
+		String out = "";
+		for (int i = 0; i < this.fields.size(); i++) {
+			if (Math.floorMod(i, this.width) == 0) {
+				out += "\n";
+			}
+			out += this.fields.get(i);
+		}
+		return out;
+	}
 }

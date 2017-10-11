@@ -9,21 +9,21 @@ import java.util.List;
  */
 public class Game {
 
-	private Board2 board;
+	private Board board;
 	private List<Bone> bones;
-	private TreeNode<Board2> root;
+	private TreeNode<Board> root;
 
 	Game(int width, int height, List<Integer> values, int highestPipValue) {
-		this.board = new Board2(height, width, values);
+		this.board = new Board(height, width, values);
 		createBones(highestPipValue);
 		this.root = new TreeNode<>(null, this.board);
 	}
 
-	public TreeNode<Board2> getRoot() {
+	public TreeNode<Board> getRoot() {
 		return this.root;
 	}
 
-	public Board2 getBoard() {
+	public Board getBoard() {
 		return board;
 	}
 
@@ -50,10 +50,10 @@ public class Game {
 		}
 	}
 
-	List<Board2> moves(Board2 board, Bone bone) {
-		Board2 copy = board.deepcopy();
+	List<Board> moves(Board board, Bone bone) {
+		Board copy = board.deepcopy();
 		List<Pair> pairs = board.getAllPairs();
-		List<Board2> boards = new ArrayList<>();
+		List<Board> boards = new ArrayList<>();
 		for (Pair pair : pairs) {
 			if (copy.isValidMove(pair.getFirst().getPosition(), pair.getSecond().getPosition(),
 					bone)) {
@@ -67,28 +67,28 @@ public class Game {
 
 	void createGameTree() {
 		Bone firstBone = bones.get(0);
-		List<Board2> moves = moves(this.board, firstBone);
+		List<Board> moves = moves(this.board, firstBone);
 		bones.remove(firstBone);
-		for (Board2 move : moves) {
-			TreeNode<Board2> child = new TreeNode<>(root, move);
+		for (Board move : moves) {
+			TreeNode<Board> child = new TreeNode<>(root, move);
 			root.addChildren(child);
 
 		}
-		for (TreeNode<Board2> child : root.getChildren()) {
+		for (TreeNode<Board> child : root.getChildren()) {
 			extendGameTree(child, bones);
 		}
 		System.out.println(root);
 	}
 
-	private void extendGameTree(TreeNode<Board2> node, List<Bone> bones) {
+	private void extendGameTree(TreeNode<Board> node, List<Bone> bones) {
 		Bone bone = bones.get(0);
-		List<Board2> moves = moves(node.getData(),  bone);
+		List<Board> moves = moves(node.getData(),  bone);
 		bones.remove(bone);
-		for (Board2 move : moves) {
-			TreeNode<Board2> child = new TreeNode<>(node, move);
+		for (Board move : moves) {
+			TreeNode<Board> child = new TreeNode<>(node, move);
 			node.addChildren(child);
 		}
-		for (TreeNode<Board2> child : node.getChildren()) {
+		for (TreeNode<Board> child : node.getChildren()) {
 			extendGameTree(child, bones);
 		}
 	}
@@ -97,7 +97,7 @@ public class Game {
 		List<Integer> values = new ArrayList<>(Arrays.asList(0, 1, 1, 0, 2, 1, 0, 2, 2, 1, 2, 0));
 		Game game = new Game(3, 4, values, 2);
 		game.createGameTree();
-		TreeNode<Board2> root = game.getRoot();
+		TreeNode<Board> root = game.getRoot();
 	}
 
 }
