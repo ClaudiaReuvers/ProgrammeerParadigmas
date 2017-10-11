@@ -21,6 +21,15 @@ public class Board2 {
 		}
 	}
 
+	private Board2(int height, int width) {
+		this.height = height;
+		this.width = width;
+	}
+
+	private void setFields(List<Field> fields) {
+		this.fields = fields;
+	}
+
 	public List<Field> getFields() {
 		return fields;
 	}
@@ -117,5 +126,23 @@ public class Board2 {
 
 		}
 		return false;
+	}
+
+	Board2 deepcopy() {
+		Board2 copy = new Board2(this.height, this.width);
+		copy.setFields(this.fields);
+		return copy;
+	}
+
+	@Override
+	public String toString() {
+		String out = "";
+		for (int i = 0; i < this.fields.size(); i++) {
+			if (Math.floorMod(i, this.width) == 0) {
+				out += "\n";
+			}
+			out += this.fields.get(i);
+		}
+		return out;
 	}
 }
