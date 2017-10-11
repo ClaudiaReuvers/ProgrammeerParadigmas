@@ -8,11 +8,17 @@ import java.util.List;
  */
 public class TreeNode<T> {
 
+	public T getData() {
+		return data;
+	}
+
+	T data;
 	TreeNode<T> parent;
 	List<TreeNode<T>> children = new ArrayList<>();
 
-	TreeNode(TreeNode<T> parent) {
+	TreeNode(TreeNode<T> parent, T data) {
 		this.parent = parent;
+		this.data = data;
 	}
 
 	void addChildren(TreeNode child) {
@@ -25,6 +31,16 @@ public class TreeNode<T> {
 
 	List<TreeNode<T>> getChildren() {
 		return this.children;
+	}
+
+	@Override
+	public String toString() {
+		String out = "";
+		out += data + "\n";
+		for (TreeNode<T> child : children)  {
+			out += "child: " + child;
+		}
+		return out;
 	}
 
 }
