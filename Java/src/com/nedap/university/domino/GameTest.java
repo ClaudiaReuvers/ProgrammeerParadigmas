@@ -1,6 +1,7 @@
 package com.nedap.university.domino;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -47,18 +48,61 @@ public class GameTest {
 		assertEquals(bone, boards.get(0).getField(3).getBone());
 		assertEquals(bone, boards.get(1).getField(3).getBone());
 		assertEquals(bone, boards.get(1).getField(6).getBone());
+		Board oneMove = boards.get(0);
+		Bone secondBone = new Bone(1, 1, 4);
+		List<Board> secondMove = game.moves(oneMove, secondBone);
+		assertEquals(2, secondMove.size());
+		Board fullBoard = createFullBoard();
+		Board noOptionsBoard = createNoOptionsBoard();
+		assertNull(game.moves(fullBoard, bone));
+		assertNull(game.moves(noOptionsBoard, bone));
 	}
 
-//	List<Board> moves(Bone bone) {
-//		List<Pair> pairs = board.getAllPairs();
-//		List<Board> boards = new ArrayList<>();
-//		for (Pair pair : pairs) {
-//			if (board.isValidMove(pair.getFirst().getPosition(), pair.getSecond().getPosition(),
-//					bone)) {
-//				Board movedBoard = board.move(pair.getFirst().getPosition(), pair.getSecond().getPosition(), bone);
-//				boards.add(movedBoard);
-//			}
-//		}
-//		return boards;
-//	}
+	private Board createNoOptionsBoard() {
+		List<Integer> values = new ArrayList<>(Arrays.asList(0,1,1,0,2,1,0,2,2,1,2,0));
+		Board board = new Board(4, 3, values);
+		board.move(0, 1, new Bone(0, 1, 2));
+		board.move(3, 6, new Bone(0, 0, 1));
+		board.move(2, 5, new Bone(1, 1, 4));
+		board.move(4, 7, new Bone(2, 2, 6));
+		board.move(10, 11, new Bone(0,0,0)); //this is actually not a valid move
+		return board;
+	}
+
+	private Board createFullBoard() {
+		List<Integer> values = new ArrayList<>(Arrays.asList(0,1,1,0,2,1,0,2,2,1,2,0));
+		Board board = new Board(4, 3, values);
+		board.move(0, 1, new Bone(0, 1, 2));
+		board.move(3, 6, new Bone(0, 0, 1));
+		board.move(2, 5, new Bone(1, 1, 4));
+		board.move(4, 7, new Bone(2, 2, 6));
+		board.move(9, 10, new Bone(1, 2, 5));
+		board.move(8, 11, new Bone(0, 2, 3));
+		return board;
+	}
+
+	@Test
+	public void testCreateGameTree() {
+		game.createGameTree2();
+		assertEquals(2, game.getRoot().getChildren().size());
+		assertEquals(1, game.getRoot().getChildren().get(0).getChildren().size());
+		assertEquals(1, game.getRoot().getChildren().get(1).getChildren().size());
+		assertEquals(7, game.getRoot().getLeaves().size());
+		assertEquals(6, game.findSolutions().size());
+		System.out.println(game.findSolutions());
+	}
+
+	@Test
+	public void testCreateGameTreeSmall() {
+		List<Integer> values = new ArrayList<>(Arrays.asList(0,0,0,1));
+		Game smallGame = new Game(2, 2, values, 1);
+		smallGame.getBones().remove(2); // manipulate boneslist s.t. there are only two bones
+		smallGame.createGameTree2();
+		assertEquals(2, smallGame.getRoot().getChildren().size());
+		assertEquals(2, smallGame.getRoot().getLeaves().size());
+		assertEquals(1, smallGame.getRoot().getChildren().get(0).getChildren().size());
+		assertEquals(1, smallGame.getRoot().getChildren().get(1).getChildren().size());
+		assertEquals(2, smallGame.findSolutions().size());
+	}
+
 }

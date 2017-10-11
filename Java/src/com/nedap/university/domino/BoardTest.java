@@ -65,17 +65,57 @@ public class BoardTest {
 		assertEquals(bone, board.getField(0).getBone());
 		assertFalse(board.getField(1).isEmpty());
 		assertEquals(bone, board.getField(1).getBone());
+		testAfterOneMove();
+	}
+
+	private void testAfterOneMove() {
+		assertFalse(board.isFull());
+		assertFalse(board.noOptions());
+		assertEquals(13, board.getAllPairs().size());
 	}
 
 	@Test
 	public void testIsValidMove() {
 		Bone bone1 = new Bone (0,0,1);
 		Bone bone2 = new Bone (0, 1, 2);
-		assertFalse(board.isValidMove(0, 1, bone1));
-		assertTrue(board.isValidMove(0 , 1, bone2));
-		assertFalse(board.isValidMove(-1, 0 , bone1));
-		board.move(0, 1, bone2);
-		assertFalse(board.isValidMove(1, 2, bone1));
+		Pair pair = new Pair(new Field(0, 0), new Field(1, 1));
+		assertFalse(board.isValidMove(pair, bone1));
+		assertTrue(board.isValidMove(pair, bone2));
+	}
+
+	@Test
+	public void testDeepCopy() {
+		Board copy = board.deepcopy();
+		assertTrue(board.equals(copy));
+		board.move(0, 0, new Bone(0,0,1));
+		Board copyAfterMove = board.deepcopy();
+		assertTrue(board.equals(copyAfterMove));
+	}
+
+	@Test
+	public void testFullBoard() {
+		board.move(0, 1, new Bone(0, 1, 2));
+		board.move(3, 6, new Bone(0, 0, 1));
+		board.move(2, 5, new Bone(1, 1, 4));
+		board.move(4, 7, new Bone(2, 2, 6));
+		board.move(9, 10, new Bone(1, 2, 5));
+		assertFalse(board.isFull());
+		assertFalse(board.noOptions());
+		assertEquals(1, board.getAllPairs().size());
+		board.move(8, 11, new Bone(0, 2, 3));
+		assertTrue(board.isFull());
+		assertTrue(board.noOptions());
+	}
+
+	@Test
+	public void testNoOptions() {
+		board.move(0, 1, new Bone(0, 1, 2));
+		board.move(3, 6, new Bone(0, 0, 1));
+		board.move(2, 5, new Bone(1, 1, 4));
+		board.move(4, 7, new Bone(2, 2, 6));
+		board.move(10, 11, new Bone(0,0,0)); //this is actually not a valid move
+		assertFalse(board.isFull());
+		assertTrue(board.noOptions());
 	}
 
 	//TODO: test getAllPairs if stones are laid

@@ -39,10 +39,17 @@ public class Bone {
 		this.nr = nr;
 	}
 
-	public boolean containsValue(int value) {
-		return pip1 == value || pip2 == value;
+	public boolean containsValue(Pair pair) {
+		int field1 = pair.getFirst().getValue();
+		int field2 = pair.getSecond().getValue();
+		return (pip1 == field1 && pip2 == field2) || (pip1 == field2 && pip2 == field1);
 	}
 
+	public boolean equals(Bone other) {
+		return this.getPip1() == other.getPip1()
+				&& this.getPip2() == other.getPip2()
+				&& this.getNr() == other.getNr();
+	}
 	@Override
 	public String toString() {
 		return this.pip1 + " | " + this.pip2 +  " (" + this.nr + ")";

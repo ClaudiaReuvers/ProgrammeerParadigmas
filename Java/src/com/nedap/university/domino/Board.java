@@ -24,13 +24,10 @@ public class Board {
 	private Board(int height, int width) {
 		this.height = height;
 		this.width = width;
+		this.fields = new ArrayList<>();
 	}
 
-	private void setFields(List<Field> fields) {
-		this.fields = fields;
-	}
-
-	public List<Field> getFields() {
+	List<Field> getFields() {
 		return fields;
 	}
 
@@ -45,8 +42,10 @@ public class Board {
 	List<Pair> getAllPairs() {
 		List<Pair> pairs = new ArrayList<>();
 		for (Field field : fields) {
-			for (Pair nghbrs : getPairsOfField(field)) {
-				pairs.add(nghbrs);
+			if (field.isEmpty()) {
+				for (Pair nghbrs : getPairsOfField(field)) {
+					pairs.add(nghbrs);
+				}
 			}
 		}
 		return pairs;
@@ -115,14 +114,11 @@ public class Board {
 		getField(pos).setBone(bone);
 	}
 
-	boolean isValidMove(int pos1, int pos2, Bone bone) {
-		Field firstField = getField(pos1);
-		Field secondField = getField(pos2);
-		if (firstField != null && secondField != null) {
-			return firstField.isEmpty()
-					&& secondField.isEmpty()
-					&& bone.containsValue(firstField.getValue())
-					&& bone.containsValue(secondField.getValue());
+	boolean isValidMove(Pair pair, Bone bone) {
+		if (pair.getFirst() != null && pair.getSecond() != null) {
+			return pair.getFirst().isEmpty()
+					&& pair.getSecond().isEmpty()
+					&& bone.containsValue(pair);
 
 		}
 		return false;
@@ -130,18 +126,37 @@ public class Board {
 
 	Board deepcopy() {
 		Board copy = new Board(this.height, this.width);
-		copy.setFields(this.fields);
+		for (int i = 0; i < this.fields.size(); i++) {
+			Field field = fields.get(i);
+			copy.setField(field.getValue(), field.getPosition(), field.getBone());
+		}
 		return copy;
+	}
+
+	private void setField(int value, int position, Bone bone) {
+		Field field = new Field(position, value);
+		field.setBone(bone);
+		this.fields.add(position, field);
+	}
+
+	public boolean equals(Board other) {
+		for (Field field : fields) {
+			Field otherField = other.getField(field.getPosition());
+			if (!field.equal(otherField)) {
+				return false;
+			}
+		}
+		return true;
 	}
 
 	@Override
 	public String toString() {
-		String out = "";
+		String out = "\n";
 		for (int i = 0; i < this.fields.size(); i++) {
 			if (Math.floorMod(i, this.width) == 0) {
 				out += "\n";
 			}
-			out += this.fields.get(i);
+			out += this.fields.get(i) + " ";
 		}
 		return out;
 	}

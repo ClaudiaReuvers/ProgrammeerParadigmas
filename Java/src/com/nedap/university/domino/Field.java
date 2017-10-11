@@ -5,6 +5,14 @@ package com.nedap.university.domino;
  */
 public class Field {
 
+	public void setPosition(int position) {
+		this.position = position;
+	}
+
+	public void setValue(int value) {
+		this.value = value;
+	}
+
 	private int position;
 	private int value;
 	private Bone bone;
@@ -32,6 +40,12 @@ public class Field {
 
 	void setBone(Bone bone) {
 		this.bone = bone;
+	}
+
+	public boolean equal(Field other) {
+		return this.getPosition() == other.getPosition()
+				&& this.getValue() == other.getValue()
+				&& ((this.getBone() == null && other.getBone() == null) || this.getBone().equals(other.getBone()));
 	}
 
 	@Override
