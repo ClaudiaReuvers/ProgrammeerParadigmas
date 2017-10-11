@@ -18,13 +18,13 @@ public class GameTest {
 	@Before
 	public void setup() {
 		List<Integer> values = new ArrayList<>(Arrays.asList(0,1,1,0,2,1,0,2,2,1,2,0));
-		game = new Game(4, 3, values, 2);
+		game = new Game(3, 4, values, 2);
 	}
 
 	@Test
 	public void testSetup() {
-		assertEquals(4, game.getBoard().getWidth());
-		assertEquals(3, game.getBoard().getHeight());
+		assertEquals(3, game.getBoard().getWidth());
+		assertEquals(4, game.getBoard().getHeight());
 		assertEquals(12, game.getBoard().getFields().size());
 		assertEquals(6, game.getBones().size());
 		assertEquals(1, game.getBones().get(0).getNr());
@@ -38,4 +38,27 @@ public class GameTest {
 		assertEquals(2, game.getBones().get(5).getPip2());
 	}
 
+	@Test
+	public void testMoves() {
+		Bone bone = new Bone(0, 0, 1);
+		List<Board2> boards = game.moves(game.getBoard(), bone);
+		assertEquals(2, boards.size());
+		assertEquals(bone, boards.get(0).getField(0).getBone());
+		assertEquals(bone, boards.get(0).getField(3).getBone());
+		assertEquals(bone, boards.get(1).getField(3).getBone());
+		assertEquals(bone, boards.get(1).getField(6).getBone());
+	}
+
+//	List<Board2> moves(Bone bone) {
+//		List<Pair> pairs = board.getAllPairs();
+//		List<Board2> boards = new ArrayList<>();
+//		for (Pair pair : pairs) {
+//			if (board.isValidMove(pair.getFirst().getPosition(), pair.getSecond().getPosition(),
+//					bone)) {
+//				Board2 movedBoard = board.move(pair.getFirst().getPosition(), pair.getSecond().getPosition(), bone);
+//				boards.add(movedBoard);
+//			}
+//		}
+//		return boards;
+//	}
 }
