@@ -83,13 +83,13 @@ public class GameTest {
 
 	@Test
 	public void testCreateGameTree() {
-		game.createGameTree2();
+		game.createGameTree();
 		assertEquals(2, game.getRoot().getChildren().size());
 		assertEquals(1, game.getRoot().getChildren().get(0).getChildren().size());
 		assertEquals(1, game.getRoot().getChildren().get(1).getChildren().size());
 		assertEquals(7, game.getRoot().getLeaves().size());
-		assertEquals(6, game.findSolutions().size());
-		System.out.println(game.findSolutions());
+		assertEquals(6, game.getSolutions().size());
+		System.out.println(game.getSolutions());
 	}
 
 	@Test
@@ -97,12 +97,12 @@ public class GameTest {
 		List<Integer> values = new ArrayList<>(Arrays.asList(0, 0, 0, 1));
 		Game smallGame = new Game(2, 2, values, 1);
 		smallGame.getBones().remove(2); // manipulate boneslist s.t. there are only two bones
-		smallGame.createGameTree2();
+		smallGame.createGameTree();
 		assertEquals(2, smallGame.getRoot().getChildren().size());
 		assertEquals(2, smallGame.getRoot().getLeaves().size());
 		assertEquals(1, smallGame.getRoot().getChildren().get(0).getChildren().size());
 		assertEquals(1, smallGame.getRoot().getChildren().get(1).getChildren().size());
-		assertEquals(2, smallGame.findSolutions().size());
+		assertEquals(2, smallGame.getSolutions().size());
 	}
 
 }

@@ -38,14 +38,6 @@ public class Field {
 		return this.bone;
 	}
 
-	public void setPosition(int position) {
-		this.position = position;
-	}
-
-	public void setValue(int value) {
-		this.value = value;
-	}
-
 	void setBone(Bone bone) {
 		this.bone = bone;
 	}
@@ -57,7 +49,7 @@ public class Field {
 		System.out.println(f);
 	}
 
-	public boolean equal(Field other) {
+	boolean equal(Field other) {
 		return this.getPosition() == other.getPosition()
 				&& this.getValue() == other.getValue()
 				&& ((this.getBone() == null && other.getBone() == null) || this.getBone()

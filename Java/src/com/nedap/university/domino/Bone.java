@@ -30,31 +30,19 @@ public class Bone {
 		return this.nr;
 	}
 
-	void setPip1(int pip1) {
-		this.pip1 = pip1;
-	}
-
-	void setPip2(int pip2) {
-		this.pip2 = pip2;
-	}
-
-	void setNr(int nr) {
-		this.nr = nr;
-	}
-
 	/**
 	 * Checks if the values of the given <code>Pair</code> match the pips of the <code>Bone</code>
 	 *
 	 * @return <code>true</code> if both values of the <code>Pair</code> are equal to the pips of
 	 * the <code>Bone</code>
 	 */
-	public boolean containsValue(Pair pair) {
+	boolean containsValue(Pair pair) {
 		int field1 = pair.getFirst().getValue();
 		int field2 = pair.getSecond().getValue();
 		return (pip1 == field1 && pip2 == field2) || (pip1 == field2 && pip2 == field1);
 	}
 
-	public boolean equals(Bone other) {
+	boolean equals(Bone other) {
 		return this.getPip1() == other.getPip1()
 				&& this.getPip2() == other.getPip2()
 				&& this.getNr() == other.getNr();

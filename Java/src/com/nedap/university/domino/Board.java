@@ -19,7 +19,7 @@ public class Board {
 	 *
 	 * @param values values of the fields (left to right, top to bottom)
 	 */
-	public Board(int height, int width, List<Integer> values) {
+	Board(int height, int width, List<Integer> values) {
 		this.height = height;
 		this.width = width;
 		this.fields = new ArrayList<>(); //TODO: look if ArrayList is the fastest way to go
@@ -194,7 +194,7 @@ public class Board {
 		this.fields.add(position, field);
 	}
 
-	public boolean equals(Board other) {
+	boolean equals(Board other) {
 		for (Field field : fields) {
 			Field otherField = other.getField(field.getPosition());
 			if (!field.equal(otherField)) {

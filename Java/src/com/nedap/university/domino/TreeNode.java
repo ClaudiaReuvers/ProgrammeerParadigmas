@@ -23,7 +23,7 @@ public class TreeNode<T> {
 		this.data = data;
 	}
 
-	public T getData() {
+	T getData() {
 		return data;
 	}
 
@@ -32,7 +32,7 @@ public class TreeNode<T> {
 	 *
 	 * @return a <code>Set</code> of the leaves of the <code>Node</code>
 	 */
-	public Set<TreeNode<T>> getLeaves() {
+	Set<TreeNode<T>> getLeaves() {
 		Set<TreeNode<T>> leaves = new HashSet<>();
 		if (this.hasChildren()) {
 			for (TreeNode<T> child : this.children) {
@@ -50,7 +50,7 @@ public class TreeNode<T> {
 	 *
 	 * @return the depth of the <code>Node</code>
 	 */
-	public int getDepth() {
+	int getDepth() {
 		int depth = 0;
 		TreeNode<T> parent = this.getParent();
 		while (parent != null) {
@@ -68,7 +68,7 @@ public class TreeNode<T> {
 		return this.children;
 	}
 
-	public void setParent(TreeNode<T> parent) {
+	private void setParent(TreeNode<T> parent) {
 		this.parent = parent;
 	}
 

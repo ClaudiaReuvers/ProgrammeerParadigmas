@@ -44,7 +44,7 @@ public class Game {
 		List<Integer> values = new ArrayList<>(Arrays.asList(0, 1, 1, 0, 2, 1, 0, 2, 2, 1, 2, 0));
 		Game game = new Game(3, 4, values, 2);
 		game.createGameTree();
-		List<Board> solutions = game.findSolutions();
+		List<Board> solutions = game.getSolutions();
 		System.out.println(solutions);
 	}
 
@@ -103,13 +103,13 @@ public class Game {
 	 *
 	 * TODO: optimalize algorithm
 	 */
-	void createGameTree2() {
+	void createGameTree() {
 		Bone bone = bones.get(0);
 		List<Board> moves = moves(this.board, bone);
 		for (Board move : moves) {
 			TreeNode<Board> child = new TreeNode<>(move);
 			root.addChildren(child);
-			extendGameTree2(child);
+			extendGameTree(child);
 		}
 	}
 
@@ -118,7 +118,7 @@ public class Game {
 	 *
 	 * See also <b>createGameTree</b>
 	 */
-	private void extendGameTree2(TreeNode<Board> node) {
+	private void extendGameTree(TreeNode<Board> node) {
 		if (node.getData().isFull() || node.getData().noOptions()) {
 			return;
 		}
@@ -127,48 +127,14 @@ public class Game {
 		for (Board move : moves) {
 			TreeNode<Board> child = new TreeNode<>(move);
 			node.addChildren(child);
-			extendGameTree2(child);
+			extendGameTree(child);
 		}
-	}
-
-	void createGameTree() {
-		Bone firstBone = bones.get(0);
-		List<Board> moves = moves(this.board, firstBone);
-		bones.remove(firstBone);
-		for (Board move : moves) {
-			TreeNode<Board> child = new TreeNode<>(move);
-			root.addChildren(child);
-		}
-		for (TreeNode<Board> child : root.getChildren()) {
-			extendGameTree(child, bones);
-		}
-	}
-
-	void extendGameTree(TreeNode<Board> node, List<Bone> bones) {
-		if (node.getData().isFull() || node.getData().noOptions()) {
-			return;
-		}
-		Bone bone = bones.get(0);
-		List<Board> moves = moves(node.getData(), bone);
-		bones.remove(bone);
-		for (Board move : moves) {
-			TreeNode<Board> child = new TreeNode<>(move);
-			node.addChildren(child);
-			if (move.isFull() || move.noOptions()) {
-				return;
-			} else {
-				extendGameTree(child, bones);
-			}
-		}
-//		for (TreeNode<Board> child : node.getChildren()) {
-//			extendGameTree(child, bones);
-//		}
 	}
 
 	/**
 	 * Returns all the possible solutions for the <code>Game</code>.
 	 */
-	List<Board> findSolutions() {
+	List<Board> getSolutions() {
 		List<Board> solutions = new ArrayList<>();
 		for (TreeNode<Board> node : root.getLeaves()) {
 			Board board = node.getData();
