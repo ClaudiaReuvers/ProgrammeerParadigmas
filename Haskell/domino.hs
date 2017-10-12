@@ -12,10 +12,6 @@ data Tree a = Node a [Tree a] deriving Show
 
 -- constants to test with
 board :: Board
--- board = [Value 0 0, Value 1 1, Value 2 1,
---          Value 3 0, Value 4 2, Value 5 1,
---          Value 6 0, Value 7 2, Value 8 2,
---          Value 9 1, Value 10 2, Value 11 0]
 board = [Value  0 6, Value  1 6, Value  2 2, Value  3 6, Value  4 5, Value  5 2, Value  6 4, Value  7 1,
          Value  8 1, Value  9 3, Value 10 2, Value 11 0, Value 12 1, Value 13 0, Value 14 3, Value 15 4,
          Value 16 1, Value 17 3, Value 18 2, Value 19 4, Value 20 6, Value 21 6, Value 22 5, Value 23 4,
@@ -25,8 +21,16 @@ board = [Value  0 6, Value  1 6, Value  2 2, Value  3 6, Value  4 5, Value  5 2,
          Value 48 6, Value 49 0, Value 50 5, Value 51 3, Value 52 4, Value 53 2, Value 54 0, Value 55 3]
 
 bones :: [Bone]
--- bones = zip3 [0,0,0,1,1,2] [0,1,2,1,2,2] [0..5]
 bones = zip3 [0,0,0,0,0,0,0,1,1,1,1,1,1,2,2,2,2,2,3,3,3,3,4,4,4,5,5,6] [0,1,2,3,4,5,6,1,2,3,4,5,6,2,3,4,5,6,3,4,5,6,4,5,6,5,6,6] [1..28]
+
+smallBoard :: Board
+smallBoard = [Value 0 0, Value 1 1, Value 2 1,
+         Value 3 0, Value 4 2, Value 5 1,
+         Value 6 0, Value 7 2, Value 8 2,
+         Value 9 1, Value 10 2, Value 11 0]
+
+smallBones :: [Bone]
+smallBones = zip3 [0,0,0,1,1,2] [0,1,2,1,2,2] [0..5]
 
 width :: Int
 -- width = 3
@@ -43,7 +47,7 @@ main :: Board -> [Bone] -> IO()
 main b bns = showAllBoards boards
               where
                 tree = gametree b bns
-                boards = minimaxish tree
+                boards = solutions tree
 
 -- creates a tree of possible steps
 -- the first bone in the array is tried to be placed on the board, next the second etc..
@@ -52,10 +56,10 @@ gametree b []       = Node b [] -- mag weg zodra 'full' werkt
 gametree b (bn:bns) = Node b [gametree b' bns | b' <- moves b bn]
 
 -- retrieves all possible solutions from the tree
-minimaxish :: Tree Board -> [Board]
-minimaxish (Node b []) | full b    = [b]
+solutions :: Tree Board -> [Board]
+solutions (Node b []) | full b    = [b]
                        | otherwise = []
-minimaxish (Node b ts) = [b' | ts' <- ts, b' <- minimaxish ts']
+solutions (Node b ts) = [b' | ts' <- ts, b' <- solutions ts']
 
 -- print the solutions
 showAllBoards :: [Board] -> IO ()
