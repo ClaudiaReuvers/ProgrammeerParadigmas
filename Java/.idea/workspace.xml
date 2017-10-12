@@ -79,8 +79,8 @@
       <file leaf-file-name="Game.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/nedap/university/domino/Game.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="347">
-              <caret line="69" column="43" lean-forward="true" selection-start-line="69" selection-start-column="43" selection-end-line="69" selection-end-column="43" />
+            <state relative-caret-position="332">
+              <caret line="68" column="49" lean-forward="true" selection-start-line="68" selection-start-column="49" selection-end-line="68" selection-end-column="49" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="method#Game#0;class#Game#0" expanded="false" />
@@ -911,7 +911,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="19327000" />
+    <option name="totallyTimeSpent" value="19347000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1280" height="1372" extended-state="0" />
@@ -1433,8 +1433,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/nedap/university/domino/Game.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="347">
-          <caret line="69" column="43" lean-forward="true" selection-start-line="69" selection-start-column="43" selection-end-line="69" selection-end-column="43" />
+        <state relative-caret-position="332">
+          <caret line="68" column="49" lean-forward="true" selection-start-line="68" selection-start-column="49" selection-end-line="68" selection-end-column="49" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#Game#0;class#Game#0" expanded="false" />
