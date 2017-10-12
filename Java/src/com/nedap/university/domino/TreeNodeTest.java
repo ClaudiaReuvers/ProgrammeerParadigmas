@@ -17,7 +17,7 @@ public class TreeNodeTest {
 
 	@Before
 	public void setup() {
-		root = new TreeNode<>( 1);
+		root = new TreeNode<>(1);
 	}
 
 	@Test

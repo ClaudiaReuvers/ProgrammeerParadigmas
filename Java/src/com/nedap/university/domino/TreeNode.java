@@ -10,18 +10,28 @@ import java.util.Set;
  */
 public class TreeNode<T> {
 
-	public T getData() {
-		return data;
-	}
-
 	T data;
 	TreeNode<T> parent;
 	List<TreeNode<T>> children = new ArrayList<>();
 
+	/**
+	 * Creates a <code>TreeNode</code> with the object as node value.
+	 *
+	 * The <code>TreeNode</code> does not have a parent and children.
+	 */
 	TreeNode(T data) {
 		this.data = data;
 	}
 
+	public T getData() {
+		return data;
+	}
+
+	/**
+	 * Gives a <code>Set</code> of all leaves of the <code>Node</code>
+	 *
+	 * @return a <code>Set</code> of the leaves of the <code>Node</code>
+	 */
 	public Set<TreeNode<T>> getLeaves() {
 		Set<TreeNode<T>> leaves = new HashSet<>();
 		if (this.hasChildren()) {
@@ -34,6 +44,12 @@ public class TreeNode<T> {
 		return leaves;
 	}
 
+	/**
+	 * Generates the depth of a <code>Node</code> compared to the root.
+	 * The root is defined as depth 0.
+	 *
+	 * @return the depth of the <code>Node</code>
+	 */
 	public int getDepth() {
 		int depth = 0;
 		TreeNode<T> parent = this.getParent();
@@ -44,15 +60,6 @@ public class TreeNode<T> {
 		return depth;
 	}
 
-	public void setParent(TreeNode<T> parent) {
-		this.parent = parent;
-	}
-
-	void addChildren(TreeNode child) {
-		children.add(child);
-		child.setParent(this);
-	}
-
 	TreeNode<T> getParent() {
 		return this.parent;
 	}
@@ -61,6 +68,23 @@ public class TreeNode<T> {
 		return this.children;
 	}
 
+	public void setParent(TreeNode<T> parent) {
+		this.parent = parent;
+	}
+
+	/**
+	 * Adds a child<code>Node</code> to the <code>Node</code> and sets the parent of this
+	 * child<code>Node</code> to this <code>Node</code>
+	 */
+	void addChildren(TreeNode child) {
+		children.add(child);
+		child.setParent(this);
+	}
+
+	/**
+	 * @return <code>true</code> is the <code>Node</code> has children, <code>false</code> if it is
+	 * a leaf
+	 */
 	boolean hasChildren() {
 		return !children.isEmpty();
 	}
@@ -69,7 +93,7 @@ public class TreeNode<T> {
 	public String toString() {
 		String out = "";
 		out += data + "\n";
-		for (TreeNode<T> child : children)  {
+		for (TreeNode<T> child : children) {
 			out += "child: " + child;
 		}
 		return out;

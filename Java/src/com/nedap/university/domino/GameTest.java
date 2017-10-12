@@ -18,7 +18,7 @@ public class GameTest {
 
 	@Before
 	public void setup() {
-		List<Integer> values = new ArrayList<>(Arrays.asList(0,1,1,0,2,1,0,2,2,1,2,0));
+		List<Integer> values = new ArrayList<>(Arrays.asList(0, 1, 1, 0, 2, 1, 0, 2, 2, 1, 2, 0));
 		game = new Game(3, 4, values, 2);
 	}
 
@@ -59,18 +59,18 @@ public class GameTest {
 	}
 
 	private Board createNoOptionsBoard() {
-		List<Integer> values = new ArrayList<>(Arrays.asList(0,1,1,0,2,1,0,2,2,1,2,0));
+		List<Integer> values = new ArrayList<>(Arrays.asList(0, 1, 1, 0, 2, 1, 0, 2, 2, 1, 2, 0));
 		Board board = new Board(4, 3, values);
 		board.move(0, 1, new Bone(0, 1, 2));
 		board.move(3, 6, new Bone(0, 0, 1));
 		board.move(2, 5, new Bone(1, 1, 4));
 		board.move(4, 7, new Bone(2, 2, 6));
-		board.move(10, 11, new Bone(0,0,0)); //this is actually not a valid move
+		board.move(10, 11, new Bone(0, 0, 0)); //this is actually not a valid move
 		return board;
 	}
 
 	private Board createFullBoard() {
-		List<Integer> values = new ArrayList<>(Arrays.asList(0,1,1,0,2,1,0,2,2,1,2,0));
+		List<Integer> values = new ArrayList<>(Arrays.asList(0, 1, 1, 0, 2, 1, 0, 2, 2, 1, 2, 0));
 		Board board = new Board(4, 3, values);
 		board.move(0, 1, new Bone(0, 1, 2));
 		board.move(3, 6, new Bone(0, 0, 1));
@@ -94,7 +94,7 @@ public class GameTest {
 
 	@Test
 	public void testCreateGameTreeSmall() {
-		List<Integer> values = new ArrayList<>(Arrays.asList(0,0,0,1));
+		List<Integer> values = new ArrayList<>(Arrays.asList(0, 0, 0, 1));
 		Game smallGame = new Game(2, 2, values, 1);
 		smallGame.getBones().remove(2); // manipulate boneslist s.t. there are only two bones
 		smallGame.createGameTree2();

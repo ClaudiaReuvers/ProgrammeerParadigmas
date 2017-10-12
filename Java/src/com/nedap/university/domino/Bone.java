@@ -9,6 +9,9 @@ public class Bone {
 	private int pip2;
 	private int nr;
 
+	/**
+	 * Creates a <code>Bone</code> with two pips and the number of the <code>Bone</code>
+	 */
 	Bone(int pip1, int pip2, int nr) {
 		this.pip1 = pip1;
 		this.pip2 = pip2;
@@ -39,6 +42,12 @@ public class Bone {
 		this.nr = nr;
 	}
 
+	/**
+	 * Checks if the values of the given <code>Pair</code> match the pips of the <code>Bone</code>
+	 *
+	 * @return <code>true</code> if both values of the <code>Pair</code> are equal to the pips of
+	 * the <code>Bone</code>
+	 */
 	public boolean containsValue(Pair pair) {
 		int field1 = pair.getFirst().getValue();
 		int field2 = pair.getSecond().getValue();
@@ -50,8 +59,9 @@ public class Bone {
 				&& this.getPip2() == other.getPip2()
 				&& this.getNr() == other.getNr();
 	}
+
 	@Override
 	public String toString() {
-		return this.pip1 + " | " + this.pip2 +  " (" + this.nr + ")";
+		return this.pip1 + " | " + this.pip2 + " (" + this.nr + ")";
 	}
 }

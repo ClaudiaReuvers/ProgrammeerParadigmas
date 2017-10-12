@@ -13,6 +13,15 @@ public class Game {
 	private List<Bone> bones;
 	private TreeNode<Board> root;
 
+	/**
+	 * Creates a <code>Game</code> which can solve all possibilities for a set of <code>Bone</code>s
+	 * to be placed on the <code>Board</code>.
+	 *
+	 * @param width width of the <code>Board</code>
+	 * @param height height of the <code>Board</code>
+	 * @param values values of the <code>Board</code>
+	 * @param highestPipValue highest value on the <code>Board</code>
+	 */
 	Game(int width, int height, List<Integer> values, int highestPipValue) {
 		this.board = new Board(height, width, values);
 		createBones(highestPipValue);
@@ -39,6 +48,13 @@ public class Game {
 		System.out.println(solutions);
 	}
 
+	/**
+	 * Creates a all <code>BOne</code>s which need to be placed on the <code>Board</code>
+	 *
+	 * The <code>Bone</code>s are numbered starting by number 1. The first <code>Bone</code> has
+	 * pips 0 and 0, the last <code>highestValue</code> and <code>highestValue</code>. All pip
+	 * combinations are unique.
+	 */
 	private void createBones(int highestValue) {
 		List<Bone> bones = new ArrayList<>();
 		int nr = 0;
@@ -51,6 +67,15 @@ public class Game {
 		this.bones = bones;
 	}
 
+	/**
+	 * Calculates all possible next <code>Board</code>s for the current <code>Board</code> and given
+	 * <code>Bone</code>
+	 *
+	 * @param board the current state of the <code>Board</code>
+	 * @param bone <code>Bone</code> to be placed
+	 * @return all possible new <code>Board</code>s, <code>null</code> if the <code>Board</code> is
+	 * full or there are no pairs left on the <code>Board</code>
+	 */
 	List<Board> moves(Board board, Bone bone) {
 		if (board.noOptions() || board.isFull()) {
 			return null;
@@ -68,6 +93,16 @@ public class Game {
 		return boards;
 	}
 
+	/**
+	 * Generates a Tree of all possible moves, where the <code>root</code> is an empty board.
+	 *
+	 * The <code>Bone</code>s are placed in the order of the list. If a <code>Bone</code> could be
+	 * placed at more than one location, two branches are created. The tree is extended until 1) no
+	 * bones are left and the <code>Board</code> is full or 2) there are no <code>Pair</code>s at
+	 * the <code>Board</code> left.
+	 *
+	 * TODO: optimalize algorithm
+	 */
 	void createGameTree2() {
 		Bone bone = bones.get(0);
 		List<Board> moves = moves(this.board, bone);
@@ -78,6 +113,11 @@ public class Game {
 		}
 	}
 
+	/**
+	 * Extends the tree at the given <code>TreeNode</code> for all possible moves.
+	 *
+	 * See also <b>createGameTree</b>
+	 */
 	private void extendGameTree2(TreeNode<Board> node) {
 		if (node.getData().isFull() || node.getData().noOptions()) {
 			return;
@@ -125,6 +165,9 @@ public class Game {
 //		}
 	}
 
+	/**
+	 * Returns all the possible solutions for the <code>Game</code>.
+	 */
 	List<Board> findSolutions() {
 		List<Board> solutions = new ArrayList<>();
 		for (TreeNode<Board> node : root.getLeaves()) {

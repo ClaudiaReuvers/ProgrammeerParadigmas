@@ -20,7 +20,7 @@ public class BoardTest {
 
 	@Before
 	public void setUp() {
-		List<Integer> values = new ArrayList<>(Arrays.asList(0,1,1,0,2,1,0,2,2,1,2,0));
+		List<Integer> values = new ArrayList<>(Arrays.asList(0, 1, 1, 0, 2, 1, 0, 2, 2, 1, 2, 0));
 		board = new Board(4, 3, values);
 	}
 
@@ -76,8 +76,8 @@ public class BoardTest {
 
 	@Test
 	public void testIsValidMove() {
-		Bone bone1 = new Bone (0,0,1);
-		Bone bone2 = new Bone (0, 1, 2);
+		Bone bone1 = new Bone(0, 0, 1);
+		Bone bone2 = new Bone(0, 1, 2);
 		Pair pair = new Pair(new Field(0, 0), new Field(1, 1));
 		assertFalse(board.isValidMove(pair, bone1));
 		assertTrue(board.isValidMove(pair, bone2));
@@ -87,7 +87,7 @@ public class BoardTest {
 	public void testDeepCopy() {
 		Board copy = board.deepcopy();
 		assertTrue(board.equals(copy));
-		board.move(0, 0, new Bone(0,0,1));
+		board.move(0, 0, new Bone(0, 0, 1));
 		Board copyAfterMove = board.deepcopy();
 		assertTrue(board.equals(copyAfterMove));
 	}
@@ -113,12 +113,9 @@ public class BoardTest {
 		board.move(3, 6, new Bone(0, 0, 1));
 		board.move(2, 5, new Bone(1, 1, 4));
 		board.move(4, 7, new Bone(2, 2, 6));
-		board.move(10, 11, new Bone(0,0,0)); //this is actually not a valid move
+		board.move(10, 11, new Bone(0, 0, 0)); //this is actually not a valid move
 		assertFalse(board.isFull());
 		assertTrue(board.noOptions());
 	}
 
-	//TODO: test getAllPairs if stones are laid
-	//TODO: test isFull if the board is full
-	//TODO: test noOptions if there are no options
 }
