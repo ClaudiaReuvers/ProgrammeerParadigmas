@@ -206,7 +206,7 @@ public class Board {
 
 	@Override
 	public String toString() {
-		String out = "\n";
+		String out = "";
 		for (int i = 0; i < this.fields.size(); i++) {
 			if (Math.floorMod(i, this.width) == 0) {
 				out += "\n";

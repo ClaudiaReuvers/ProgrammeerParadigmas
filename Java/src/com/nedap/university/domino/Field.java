@@ -60,9 +60,13 @@ public class Field {
 	public String toString() {
 		String output = "" + this.value;
 		if (!isEmpty()) {
-			output += "(" + this.bone.getNr() + ")";
+			output += "(";
+			if (this.bone.getNr() < 10) {
+				output  += " ";
+			}
+			output += this.bone.getNr() + ")";
 		} else {
-			output += "   ";
+			output += "    ";
 		}
 		return output;
 	}

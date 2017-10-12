@@ -40,12 +40,44 @@ public class Game {
 		return bones;
 	}
 
+	/**
+	 * Returns all the possible solutions for the <code>Game</code>.
+	 */
+	List<Board> getSolutions() {
+		List<Board> solutions = new ArrayList<>();
+		for (TreeNode<Board> node : root.getLeaves()) {
+			Board board = node.getData();
+			if (board.isFull()) {
+				solutions.add(board);
+			}
+		}
+		return solutions;
+	}
+
 	public static void main(String[] args) {
-		List<Integer> values = new ArrayList<>(Arrays.asList(0, 1, 1, 0, 2, 1, 0, 2, 2, 1, 2, 0));
-		Game game = new Game(3, 4, values, 2);
+//		//Small grid (3x4)
+//		List<Integer> values = new ArrayList<>(Arrays.asList(0, 1, 1, 0, 2, 1, 0, 2, 2, 1, 2, 0));
+//		Game game = new Game(3, 4, values, 2);
+//		game.createGameTree();
+//		List<Board> solutions = game.getSolutions();
+//		printSolutions(solutions);
+
+		//First example of the assignment description (8x7)
+		List<Integer> values = new ArrayList<>(
+				Arrays.asList(6, 6, 2, 6, 5, 2, 4, 1, 1, 3, 2, 0, 1, 0, 3, 4, 1, 3, 2, 4, 6, 6, 5,
+						4, 1, 0, 4, 3, 2, 1, 1, 2, 5, 1, 3, 6, 0, 4, 5, 5, 5, 5, 4, 0, 2, 6, 0, 3,
+						6, 0, 5, 3, 4, 2, 0, 3));
+		Game game = new Game(8, 7, values, 6);
 		game.createGameTree();
 		List<Board> solutions = game.getSolutions();
-		System.out.println(solutions);
+		printSolutions(solutions);
+	}
+
+	private static void printSolutions(List<Board> solutions) {
+		System.out.println("There are " + solutions.size() + " solutions for the given grid: ");
+		for (Board sol : solutions) {
+			System.out.println(sol);
+		}
 	}
 
 	/**
@@ -129,20 +161,6 @@ public class Game {
 			node.addChildren(child);
 			extendGameTree(child);
 		}
-	}
-
-	/**
-	 * Returns all the possible solutions for the <code>Game</code>.
-	 */
-	List<Board> getSolutions() {
-		List<Board> solutions = new ArrayList<>();
-		for (TreeNode<Board> node : root.getLeaves()) {
-			Board board = node.getData();
-			if (board.isFull()) {
-				solutions.add(board);
-			}
-		}
-		return solutions;
 	}
 
 }
