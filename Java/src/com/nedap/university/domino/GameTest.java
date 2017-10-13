@@ -19,7 +19,7 @@ public class GameTest {
 	@Before
 	public void setup() {
 		List<Integer> values = new ArrayList<>(Arrays.asList(0, 1, 1, 0, 2, 1, 0, 2, 2, 1, 2, 0));
-		game = new Game(3, 4, values, 2);
+		game = new Game(3, 4, values);
 	}
 
 	@Test
@@ -95,7 +95,7 @@ public class GameTest {
 	@Test
 	public void testCreateGameTreeSmall() {
 		List<Integer> values = new ArrayList<>(Arrays.asList(0, 0, 0, 1));
-		Game smallGame = new Game(2, 2, values, 1);
+		Game smallGame = new Game(2, 2, values);
 		smallGame.getBones().remove(2); // manipulate boneslist s.t. there are only two bones
 		smallGame.createGameTree();
 		assertEquals(2, smallGame.getRoot().getChildren().size());

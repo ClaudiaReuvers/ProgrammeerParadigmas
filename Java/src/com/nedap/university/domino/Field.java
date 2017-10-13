@@ -8,6 +8,7 @@ public class Field {
 	private int position;
 	private int value;
 	private Bone bone;
+
 	/**
 	 * Creates a <code>Field</code> with a certain position and value
 	 */

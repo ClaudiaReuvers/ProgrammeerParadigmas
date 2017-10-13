@@ -2,6 +2,7 @@ package com.nedap.university.domino;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -20,11 +21,10 @@ public class Game {
 	 * @param width width of the <code>Board</code>
 	 * @param height height of the <code>Board</code>
 	 * @param values values of the <code>Board</code>
-	 * @param highestPipValue highest value on the <code>Board</code>
 	 */
-	Game(int width, int height, List<Integer> values, int highestPipValue) {
+	Game(int width, int height, List<Integer> values) {
 		this.board = new Board(height, width, values);
-		createBones(highestPipValue);
+		createBones(Collections.max(values));
 		this.root = new TreeNode<>(this.board);
 	}
 
@@ -57,20 +57,30 @@ public class Game {
 	public static void main(String[] args) {
 //		//Small grid (3x4)
 //		List<Integer> values = new ArrayList<>(Arrays.asList(0, 1, 1, 0, 2, 1, 0, 2, 2, 1, 2, 0));
-//		Game game = new Game(3, 4, values, 2);
+//		Game game = new Game(3, 4, values);
 //		game.createGameTree();
 //		List<Board> solutions = game.getSolutions();
 //		printSolutions(solutions);
 
-		//First example of the assignment description (8x7)
-		List<Integer> values = new ArrayList<>(
+		//Examples of the assignment description (8x7)
+		List<Integer> ex1 = new ArrayList<>(
 				Arrays.asList(6, 6, 2, 6, 5, 2, 4, 1, 1, 3, 2, 0, 1, 0, 3, 4, 1, 3, 2, 4, 6, 6, 5,
 						4, 1, 0, 4, 3, 2, 1, 1, 2, 5, 1, 3, 6, 0, 4, 5, 5, 5, 5, 4, 0, 2, 6, 0, 3,
 						6, 0, 5, 3, 4, 2, 0, 3));
-		Game game = new Game(8, 7, values, 6);
+		List<Integer> ex2 = new ArrayList<>(
+				Arrays.asList(5, 4, 3, 6, 5, 3, 4, 6, 0, 6, 0, 1, 2, 3, 1, 1, 3, 2, 6, 5, 0, 4, 2,
+						0, 5, 3, 6, 2, 3, 2, 0, 6, 4, 0, 4, 1, 0, 0, 4, 1, 5, 2, 2, 4, 4, 1, 6, 5,
+						5, 5, 3, 6, 1, 2, 3, 1));
+		List<Integer> ex3 = new ArrayList<>(
+				Arrays.asList(4, 2, 5, 2, 6, 3, 5, 4, 5, 0, 4, 3, 1, 4, 1, 1, 1, 2, 3, 0, 2, 2, 2,
+						2, 1, 4, 0, 1, 3, 5, 6, 5, 4, 0, 6, 0, 3, 6, 6, 5, 4, 0, 1, 6, 4, 0, 3, 0,
+						6, 5, 3, 6, 2, 1, 5, 3));
+		Game game = new Game(8, 7, ex1);
 		game.createGameTree();
 		List<Board> solutions = game.getSolutions();
 		printSolutions(solutions);
+
+
 	}
 
 	private static void printSolutions(List<Board> solutions) {
@@ -81,7 +91,7 @@ public class Game {
 	}
 
 	/**
-	 * Creates a all <code>BOne</code>s which need to be placed on the <code>Board</code>
+	 * Creates a all <code>Bone</code>s which need to be placed on the <code>Board</code>
 	 *
 	 * The <code>Bone</code>s are numbered starting by number 1. The first <code>Bone</code> has
 	 * pips 0 and 0, the last <code>highestValue</code> and <code>highestValue</code>. All pip
@@ -150,7 +160,7 @@ public class Game {
 	 *
 	 * See also <b>createGameTree</b>
 	 */
-	private void extendGameTree(TreeNode<Board> node) {
+	void extendGameTree(TreeNode<Board> node) {
 		if (node.getData().isFull() || node.getData().noOptions()) {
 			return;
 		}
