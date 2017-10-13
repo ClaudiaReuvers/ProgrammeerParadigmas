@@ -11,41 +11,63 @@ type Board = [Loc]
 data Tree a = Node a [Tree a] deriving Show
 
 -- constants to test with
-board :: Board
-board = [Value  0 6, Value  1 6, Value  2 2, Value  3 6, Value  4 5, Value  5 2, Value  6 4, Value  7 1,
-         Value  8 1, Value  9 3, Value 10 2, Value 11 0, Value 12 1, Value 13 0, Value 14 3, Value 15 4,
-         Value 16 1, Value 17 3, Value 18 2, Value 19 4, Value 20 6, Value 21 6, Value 22 5, Value 23 4,
-         Value 24 1, Value 25 0, Value 26 4, Value 27 3, Value 28 2, Value 29 1, Value 30 1, Value 31 2,
-         Value 32 5, Value 33 1, Value 34 3, Value 35 6, Value 36 0, Value 37 4, Value 38 5, Value 39 5,
-         Value 40 5, Value 41 5, Value 42 4, Value 43 0, Value 44 2, Value 45 6, Value 46 0, Value 47 3,
-         Value 48 6, Value 49 0, Value 50 5, Value 51 3, Value 52 4, Value 53 2, Value 54 0, Value 55 3]
+ex1 :: [Int]
+ex1 = [6, 6, 2, 6, 5, 2, 4, 1,
+       1, 3, 2, 0, 1, 0, 3, 4,
+       1, 3, 2, 4, 6, 6, 5, 4,
+       1, 0, 4, 3, 2, 1, 1, 2,
+       5, 1, 3, 6, 0, 4, 5, 5,
+       5, 5, 4, 0, 2, 6, 0, 3,
+       6, 0, 5, 3, 4, 2, 0, 3]
 
-bones :: [Bone]
-bones = zip3 [0,0,0,0,0,0,0,1,1,1,1,1,1,2,2,2,2,2,3,3,3,3,4,4,4,5,5,6] [0,1,2,3,4,5,6,1,2,3,4,5,6,2,3,4,5,6,3,4,5,6,4,5,6,5,6,6] [1..28]
+ex2 :: [Int]
+ex2 = [5, 4, 3, 6, 5, 3, 4, 6,
+       0, 6, 0, 1, 2, 3, 1, 1,
+       3, 2, 6, 5, 0, 4, 2, 0,
+       5, 3, 6, 2, 3, 2, 0, 6,
+       4, 0, 4, 1, 0, 0, 4, 1,
+       5, 2, 2, 4, 4, 1, 6, 5,
+       5, 5, 3, 6, 1, 2, 3, 1]
 
-smallBoard :: Board
-smallBoard = [Value 0 0, Value 1 1, Value 2 1,
-         Value 3 0, Value 4 2, Value 5 1,
-         Value 6 0, Value 7 2, Value 8 2,
-         Value 9 1, Value 10 2, Value 11 0]
+ex3 :: [Int]
+ex3 = [4, 2, 5, 2, 6, 3, 5, 4,
+       5, 0, 4, 3, 1, 4, 1, 1,
+       1, 2, 3, 0, 2, 2, 2, 2,
+       1, 4, 0, 1, 3, 5, 6, 5,
+       4, 0, 6, 0, 3, 6, 6, 5,
+       4, 0, 1, 6, 4, 0, 3, 0,
+       6, 5, 3, 6, 2, 1, 5, 3]
 
-smallBones :: [Bone]
-smallBones = zip3 [0,0,0,1,1,2] [0,1,2,1,2,2] [0..5]
+smallBoard :: [Int]
+smallBoard = [0, 1, 1,
+              0, 2, 1,
+              0, 2, 2,
+              1, 2, 0]
+
+createBoard :: [Int] -> Board
+createBoard xs = [Value p v | (p,v) <- zip [0..] xs]
+
+createBones :: Int -> [Bone]
+createBones n = zip3 pip1 pip2 [1..]
+                 where
+                   pips = [(p1,p2) | p1 <- [0..n], p2 <- [p1..n]]
+                   pip1 = [p1 | (p1, _) <- pips]
+                   pip2 = [p2 | (_, p2) <- pips]
 
 width :: Int
--- width = 3
 width = 8
 
 height :: Int
--- height = 4
 height = 7
 --------------------
 
 --main method
 -- it calculates the possible solutions for the given board and stones, and prints it
-main :: Board -> [Bone] -> IO()
-main b bns = showAllBoards boards
+main :: [Int] -> IO()
+main vals = showAllBoards boards
               where
+                b = createBoard vals
+                bns = createBones (maximum vals)
                 tree = gametree b bns
                 boards = solutions tree
 
@@ -58,12 +80,12 @@ gametree b (bn:bns) = Node b [gametree b' bns | b' <- moves b bn]
 -- retrieves all possible solutions from the tree
 solutions :: Tree Board -> [Board]
 solutions (Node b []) | full b    = [b]
-                       | otherwise = []
+                      | otherwise = []
 solutions (Node b ts) = [b' | ts' <- ts, b' <- solutions ts']
 
 -- print the solutions
 showAllBoards :: [Board] -> IO ()
-showAllBoards [] = putStr []
+showAllBoards []     = putStr []
 showAllBoards (b:bs) = do showBoard b
                           showAllBoards bs
 
@@ -95,8 +117,8 @@ moves b bn | noOptions b = []
 -- lays the bone on the two given positions on the board
 move :: Board -> Bone -> Int -> Int -> Board
 move b bn nx ny = layStone b' bn ny
-                  where
-                    b' = layStone b bn nx
+                   where
+                     b' = layStone b bn nx
 
 -- lay the stone on the position on the board
 layStone :: Board -> Bone -> Int -> Board
@@ -111,17 +133,17 @@ neighbs b (Value n _) = freeRight b n ++ freeBelow b n
 
 freeBelow :: Board -> Int -> [(Loc,Loc)]
 freeBelow b n = if (isValid below && isFree (b !! below))
-               then [((b !! n), (b !! below))]
-               else []
-                where
-                  below = n + width
+                then [((b !! n), (b !! below))]
+                else []
+                 where
+                   below = n + width
 
 freeRight :: Board -> Int -> [(Loc,Loc)]
 freeRight b n = if (isValid right) && (right `mod` width /= 0 && isFree (b !! right))
-               then [((b !! n), (b !! right))]
-               else []
-                where
-                  right = n + 1
+                then [((b !! n), (b !! right))]
+                else []
+                 where
+                   right = n + 1
 --------------------
 
 -- checks whether it is possible to lay a stone on this Loc
