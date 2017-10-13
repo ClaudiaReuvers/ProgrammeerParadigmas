@@ -1,7 +1,8 @@
 # Java solution Domino
 
 ## Getting a solution
-The `Game` class has a main method where a small grid of 3x4 and three larger grids of 7x8 (these are the examples of listed in the assignment) are already available. To get the solution of these grids, just run the `main` method of `Game`. You can adapt the grid to be solved by choosing another grid in line 78.
+The `Game` class has a main method where a small grid of 3x4 and three larger grids of 7x8 (these are the examples of listed in the assignment) are already available. To get the solution of these grids, just run the `main` method of `Game`. You can adapt the grid to be solved by choosing another grid and dimensions in line 74.
+
 If you want to get the solution of another grid, create a new `Game` with as parameters 1) the width of the grid, 2) the height of the grid, and 3) a list of the values on the grid (listed from left to right, top to bottom). The values of the grid need to be from 0 to x, since this is assumed by the creation of the `Bone`s. Create a tree by running the `createGameTree` method on the game. Finally, retrieve the solutions from the tree by running `getSolutions`. If you would like to print the solutions of the grid, use `printSolutions` with the list of solutions as a parameter.
 
 ## Algorithm

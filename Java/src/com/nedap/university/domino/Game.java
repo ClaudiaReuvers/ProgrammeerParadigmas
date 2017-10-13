@@ -55,12 +55,8 @@ public class Game {
 	}
 
 	public static void main(String[] args) {
-//		//Small grid (3x4)
-//		List<Integer> values = new ArrayList<>(Arrays.asList(0, 1, 1, 0, 2, 1, 0, 2, 2, 1, 2, 0));
-//		Game game = new Game(3, 4, values);
-//		game.createGameTree();
-//		List<Board> solutions = game.getSolutions();
-//		printSolutions(solutions);
+		//Small grid (3x4)
+		List<Integer> smallGrid = new ArrayList<>(Arrays.asList(0, 1, 1, 0, 2, 1, 0, 2, 2, 1, 2, 0));
 
 		//Examples of the assignment description (8x7)
 		List<Integer> ex1 = new ArrayList<>(
